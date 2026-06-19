@@ -30,7 +30,7 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', service: 'HandsOn Volunteer API' });
+  res.json({ status: 'ok', service: 'NayePankh Foundation Volunteer API' });
 });
 
 // Mount API Routes
@@ -65,7 +65,7 @@ async function startServer() {
     } else {
       console.log('Frontend build folder not found. Running in API-only mode (development).');
       app.get('/', (req, res) => {
-        res.json({ message: 'Volunteer System API is running. Start the frontend dev server to access the UI.' });
+        res.json({ message: 'NayePankh Foundation Volunteer API is running. Start the frontend dev server to access the UI.' });
       });
     }
 

@@ -20,7 +20,7 @@ export async function seedDatabase() {
   // 1. Seed Users (Admin & Volunteers)
   const users = [
     {
-      name: 'System Administrator',
+      name: 'NayePankh Admin',
       email: 'admin@volunteer.org',
       password_hash: adminHash,
       role: 'admin',
@@ -77,35 +77,35 @@ export async function seedDatabase() {
   const events = [
     {
       title: 'Community Food Drive',
-      description: 'Join us to distribute food packages to families in need. Volunteers will help organize packages, set up tables, and hand out items.',
-      date: formatDate(5), // 5 days in future
+      description: 'NayePankh Foundation organizes a food distribution drive to provide meals and groceries to underserved families. Volunteers help pack, sort, and hand out food packages.',
+      date: formatDate(5),
       time: '09:00',
       location: 'Downtown Community Center',
       skills_needed: 'Cooking, Event Help',
       max_volunteers: 15
     },
     {
-      title: 'Youth Code & Coffee Workshop',
-      description: 'Teach basics of programming to school kids. We need volunteers who know basic HTML/CSS or JS to mentor groups of 3-4 kids.',
-      date: formatDate(10), // 10 days in future
+      title: 'Youth Education Workshop',
+      description: 'NayePankh Foundation\'s education initiative — teach basics of programming, math, or English to school kids. Mentors guide groups of 3-4 students through hands-on activities.',
+      date: formatDate(10),
       time: '10:00',
-      location: 'City Tech Hub - Room 402',
+      location: 'NayePankh Learning Hub — Room 402',
       skills_needed: 'IT Support, Teaching',
       max_volunteers: 8
     },
     {
       title: 'Green Park Cleanup Campaign',
-      description: 'Help clean up Green Park! We will collect litter, paint rusted benches, and plant new saplings. Please wear comfortable clothes.',
-      date: formatDate(2), // 2 days in future
+      description: 'Join NayePankh Foundation\'s environment drive! Help clean up Green Park — collect litter, paint benches, and plant saplings. Wear comfortable clothes and bring gloves.',
+      date: formatDate(2),
       time: '08:00',
       location: 'Green Park (Central Gates)',
       skills_needed: 'Gardening, Event Help',
-      max_volunteers: null // Unlimited
+      max_volunteers: null
     },
     {
       title: 'After-School Literacy Program',
-      description: 'Help kids with reading comprehension and homework. This is a recurring past event where volunteers logged hours.',
-      date: formatDate(-3), // 3 days in past
+      description: 'NayePankh Foundation\'s literacy mission — help kids with reading comprehension and homework. This recurring program empowers young learners with essential skills.',
+      date: formatDate(-3),
       time: '15:30',
       location: 'Public Library (Kids Wing)',
       skills_needed: 'Teaching, Admin Support',
@@ -113,8 +113,8 @@ export async function seedDatabase() {
     },
     {
       title: 'Charity Gala Organizing',
-      description: 'A past event where volunteers helped set up registration counters, welcome guests, and clean up afterwards.',
-      date: formatDate(-7), // 7 days in past
+      description: 'NayePankh Foundation\'s annual fundraiser event. Volunteers helped set up registration counters, welcome guests, and clean up afterwards.',
+      date: formatDate(-7),
       time: '18:00',
       location: 'Grand Plaza Ballroom',
       skills_needed: 'Event Help, Admin Support',
@@ -141,7 +141,7 @@ export async function seedDatabase() {
 
   // Find Event IDs
   const foodDrive = seededEvents.find(e => e.title === 'Community Food Drive');
-  const codeWorkshop = seededEvents.find(e => e.title === 'Youth Code & Coffee Workshop');
+  const codeWorkshop = seededEvents.find(e => e.title === 'Youth Education Workshop');
   const parkCleanup = seededEvents.find(e => e.title === 'Green Park Cleanup Campaign');
   const literacyProg = seededEvents.find(e => e.title === 'After-School Literacy Program');
   const galaOrg = seededEvents.find(e => e.title === 'Charity Gala Organizing');
@@ -150,16 +150,16 @@ export async function seedDatabase() {
   const registrations = [
     // John
     { user_id: john.id, event_id: codeWorkshop.id, status: 'registered', hours_logged: 0, hours_approved: 0 },
-    { user_id: john.id, event_id: literacyProg.id, status: 'attended', hours_logged: 3.5, hours_approved: 1 }, // Approved
-    { user_id: john.id, event_id: galaOrg.id, status: 'attended', hours_logged: 4.0, hours_approved: 1 }, // Approved
+    { user_id: john.id, event_id: literacyProg.id, status: 'attended', hours_logged: 3.5, hours_approved: 1 },
+    { user_id: john.id, event_id: galaOrg.id, status: 'attended', hours_logged: 4.0, hours_approved: 1 },
 
     // Jane
     { user_id: jane.id, event_id: foodDrive.id, status: 'registered', hours_logged: 0, hours_approved: 0 },
     { user_id: jane.id, event_id: parkCleanup.id, status: 'registered', hours_logged: 0, hours_approved: 0 },
-    { user_id: jane.id, event_id: galaOrg.id, status: 'attended', hours_logged: 5.0, hours_approved: 0 }, // Pending approval
+    { user_id: jane.id, event_id: galaOrg.id, status: 'attended', hours_logged: 5.0, hours_approved: 0 },
 
     // Bob
-    { user_id: bob.id, event_id: literacyProg.id, status: 'attended', hours_logged: 2.0, hours_approved: 0 } // Pending approval
+    { user_id: bob.id, event_id: literacyProg.id, status: 'attended', hours_logged: 2.0, hours_approved: 0 }
   ];
 
   const regStmt = await db.prepare(
