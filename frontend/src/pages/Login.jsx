@@ -32,6 +32,30 @@ export default function Login() {
     }
   };
 
+  const handleQuickLogin = async (demoEmail, demoPassword) => {
+    setError('');
+    setSuccess('');
+    setSubmitting(true);
+    setEmail(demoEmail);
+    setPassword(demoPassword);
+
+    try {
+      const loggedUser = await login(demoEmail, demoPassword);
+      setSuccess('Logged in successfully!');
+      setTimeout(() => {
+        if (loggedUser.role === 'admin') {
+          navigate('/admin');
+        } else {
+          navigate('/');
+        }
+      }, 1000);
+    } catch (err) {
+      setError(err.message || 'An error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
@@ -248,6 +272,53 @@ export default function Login() {
           >
             {submitting ? 'Processing...' : (isLogin ? 'Sign In' : 'Create Account')}
           </button>
+
+          {isLogin && (
+            <>
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                margin: '20px 0 16px',
+                color: 'var(--text-muted)',
+                fontSize: '0.8rem',
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em'
+              }}>
+                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.08)' }}></div>
+                <span style={{ padding: '0 10px' }}>Demo Quick Access</span>
+                <div style={{ flex: 1, height: '1px', background: 'rgba(255,255,255,0.08)' }}></div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin('admin@volunteer.org', 'AdminPassword123')}
+                  className="btn btn-secondary"
+                  style={{
+                    fontSize: '0.85rem',
+                    padding: '10px',
+                    borderColor: 'rgba(139, 92, 246, 0.3)',
+                    background: 'rgba(139, 92, 246, 0.05)',
+                  }}
+                >
+                  Demo Admin
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleQuickLogin('ayushi@example.com', 'Password123')}
+                  className="btn btn-secondary"
+                  style={{
+                    fontSize: '0.85rem',
+                    padding: '10px',
+                    borderColor: 'rgba(14, 165, 233, 0.3)',
+                    background: 'rgba(14, 165, 233, 0.05)',
+                  }}
+                >
+                  Demo Volunteer
+                </button>
+              </div>
+            </>
+          )}
         </form>
 
         <div style={{ marginTop: '24px', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)' }}>

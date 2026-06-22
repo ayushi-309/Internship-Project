@@ -2,7 +2,7 @@ import { createContext, useState, useEffect, useContext } from 'react';
 
 const AuthContext = createContext(null);
 
-const API_BASE_URL = 'https://nayepankh-backend-fae0.onrender.com';
+const API_BASE_URL = '';
 
 async function readJsonResponse(res) {
   const text = await res.text();

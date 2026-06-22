@@ -4,7 +4,7 @@ import Layout from '../../components/Layout';
 import { Clock, Calendar, ChevronRight, AlertCircle, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const API_BASE_URL = 'https://nayepankh-backend-fae0.onrender.com';
+const API_BASE_URL = '';
 
 export default function VolunteerDashboard() {
   const { token, user } = useAuth();
