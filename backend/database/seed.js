@@ -20,11 +20,11 @@ export async function seedDatabase() {
 
   console.log('Seeding professional demo data...');
 
-  const adminHash = await bcrypt.hash('AdminPassword123', 10);
+  const adminHash = await bcrypt.hash('Sunday123', 10);
   const userHash = await bcrypt.hash('Password123', 10);
 
   const users = [
-    ['NayePankh Super Admin', 'admin@volunteer.org', adminHash, 'admin', 'Leadership, Management, Event Planning', 'both'],
+    ['Palak Kumari', 'palak@gmail.com', adminHash, 'admin', 'Leadership, Management, Event Planning', 'both'],
 
     ['Ayushi Tiwari', 'ayushi@example.com', userHash, 'volunteer', 'Web Development, Teaching, Event Help', 'both'],
     ['Akshay Kumar', 'akshay@example.com', userHash, 'volunteer', 'Teaching, Public Speaking', 'weekends'],
